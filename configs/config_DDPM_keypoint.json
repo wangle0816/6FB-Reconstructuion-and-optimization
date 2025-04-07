@@ -1,0 +1,46 @@
+{
+    "train_dpm_config": {
+        "dataset": "exp-6FB-3D",
+        "root_directory": "exps/exp_6FB_generation_1024/keypoint_ddpm_exps/16_keypoints_axis",
+        "output_directory": "checkpoint",
+        "tensorboard_directory": "tensorboard",
+        "ckpt_iter": "6799",
+        "epochs_per_ckpt": 200,
+        "iters_per_logging": 200,
+        "n_epochs": 201,
+        "eval_epoch": 50,
+        "learning_rate": 0.0002
+    },
+
+    "dataset_config": {
+        "data_dir": "../data/",
+        "categories": "1",
+        "repeat_dataset": 10,
+        "npoints": 1024,
+        "keypoint_cls": "axis",
+        "scale": 1,
+        "batch_size": 1,
+        "eval_batch_size": 64,
+        "num_workers": 4,
+        "num_samples_tested": 128,
+        "num_keypoints": 16,
+        "keypoint_noise_magnitude": 0,
+        "keypoints_source": "farthest_points_sampling",
+        "augmentation": {"mirror_prob": 0.5, "translation_magnitude": 0.1, "augm_scale": 1.2},
+        "para_min_max_6FB-2D":"[[1.05,1.4],[0.95,1.05],[10.3,50.0],[31.3,43.7],[0,0.3],[0,0.3],[0,0.2]]",
+        "para_min_max_6FB-3D":"[[1.05,1.35],[0.95,1.1],[10.6,50],[50.1,62.43],[0,0.3],[0,0.3],[0,0.2]]",
+        "para_min_max_exp-6FB-2D":"[[1.05,1.4],[0.95,1.05],[10.3,50.0],[31.3,43.7],[0,0.3],[0,0.3],[0,0.2]]",
+        "para_min_max_exp-6FB-3D":"[[1.05,1.35],[0.95,1.1],[10.6,50],[50.1,62.43],[0,0.3],[0,0.3],[0,0.2]]",
+        "para_min_max_spiral-6FB-2D":"[[1.05,1.4],[0.95,1.05],[10.3,50.0],[31.3,43.7],[0,0.3],[0,0.3],[0,0.2]]",
+        "para_min_max_spiral-6FB-3D":"[[1.05,1.35],[0.95,1.1],[10.6,50],[50.1,62.43],[0,0.3],[0,0.3],[0,0.2]]"
+    },
+    "material_property_config": {
+        "elastic_modulus":6.9e10 ,
+        "plastic_modulus":2.188e9,
+        "poisson_ratio": 0.33
+    },
+    "dist_config": {
+        "dist_backend": "nccl",
+        "CUDA_VISIBLE_DEVICES": "0"
+    }
+}

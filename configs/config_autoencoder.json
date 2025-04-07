@@ -1,0 +1,46 @@
+{
+    "pointnet_config": {
+        "model_name": "autoencoder_",
+        "apply_kl_regularization": true,
+        "kl_weight": 1e-5,
+        "encoder_config_file": "config_encoder.json",
+        "decoder_config_file": "['decoder_level_1.json', 'decoder_level_2.json', 'decoder_level_3.json']",
+        "feature_weight": "[0,0,0.1]"
+    },
+    "train_config": {
+        "task": "autoencode",
+        "root_directory": "exps/exp_6FB-2D_1024/autoencoder_exps/16_keypoints",
+        "output_directory": "checkpoint",
+        "tensorboard_directory": "tensorboard",
+        "ckpt_iter": "max",
+        "epochs_per_ckpt": 100,
+        "iters_per_logging": 100,
+        "n_epochs": 201,
+        "eval_epoch": 50,
+        "learning_rate": 0.0002,
+        "loss_type": "mse",
+        "conditioned_on_cloud": false,
+        "split_dataset_to_multi_gpus": false
+    },
+    "dataset_config": {
+        "dataset": "6FB-2D",
+        "data_dir": "data/dataset-6FB-tube-diffusion-D25-1024",
+        "categories": "2",
+        "repeat_dataset": 10,
+        "npoints": 1024,
+        "keypoint_cls": "axis",
+        "scale": 1,
+        "batch_size": 4,
+        "eval_batch_size": 64,
+        "num_workers": 4,
+        "num_samples_tested": 128,
+        "num_keypoints": 16,
+        "keypoint_noise_magnitude": 0,
+        "keypoints_source": "farthest_points_sampling",
+        "augmentation": {"mirror_prob": 0.5, "translation_magnitude": 0.1, "augm_scale": 1.2}
+    },
+    "dist_config": {
+        "dist_backend": "nccl",
+        "CUDA_VISIBLE_DEVICES": "0"
+    }
+}
