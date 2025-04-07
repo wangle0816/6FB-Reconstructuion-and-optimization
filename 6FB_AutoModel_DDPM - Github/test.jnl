@@ -1,0 +1,947 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from optimization import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    -100.0), point2=(0.0, 100.0))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].ArcByCenterEnds(center=(
+    17.696141720688, 0.0), direction=COUNTERCLOCKWISE, point1=(17.696141720688, 
+    5.0), point2=(17.696141720688, -5.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='bend', type=
+    DISCRETE_RIGID_SURFACE)
+mdb.models['Model-1'].parts['bend'].BaseShellRevolve(angle=360.0, 
+    flipRevolveDirection=OFF, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['bend'].ReferencePoint(point=(0.0, 0.0, 0.0))
+mdb.models['Model-1'].parts['bend'].features.changeKey(fromName='RP', toName=
+    'RP-bd')
+mdb.models['Model-1'].parts['bend'].Set(name='Set-bd', referencePoints=(
+    mdb.models['Model-1'].parts['bend'].referencePoints[2], ))
+mdb.models['Model-1'].parts['bend'].Surface(name='Surf-bd', side1Faces=
+    mdb.models['Model-1'].parts['bend'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(12.5, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(10.5, 0.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='tube', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['tube'].BaseSolidExtrude(depth=617.85406410082533, 
+    sketch=mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['tube'].ReferencePoint(point=(0.0, 0.0, 0.0))
+mdb.models['Model-1'].parts['tube'].features.changeKey(fromName='RP', toName=
+    'RP-tube')
+mdb.models['Model-1'].parts['tube'].Set(name='Set-tube', referencePoints=(
+    mdb.models['Model-1'].parts['tube'].referencePoints[2], ))
+mdb.models['Model-1'].parts['tube'].Surface(name='Surf-tube', side1Faces=
+    mdb.models['Model-1'].parts['tube'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].parts['tube'].Surface(name='Surf-tube-section', 
+    side1Faces=mdb.models['Model-1'].parts['tube'].faces.getSequenceFromMask((
+    '[#4 ]', ), ))
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(12.7460766182432, 0.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='guide', type=
+    DISCRETE_RIGID_SURFACE)
+mdb.models['Model-1'].parts['guide'].BaseShellExtrude(depth=560.87609202601288, 
+    sketch=mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['guide'].ReferencePoint(point=(0.0, 0.0, 0.0))
+mdb.models['Model-1'].parts['guide'].features.changeKey(fromName='RP', toName=
+    'RP-gd')
+mdb.models['Model-1'].parts['guide'].Set(name='Set-gd', referencePoints=(
+    mdb.models['Model-1'].parts['guide'].referencePoints[2], ))
+mdb.models['Model-1'].parts['guide'].Surface(name='Surf-gd', side2Faces=
+    mdb.models['Model-1'].parts['guide'].faces.getSequenceFromMask(('[#1 ]', ), 
+    ))
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].ConstructionLine(point1=(0.0, 
+    -100.0), point2=(0.0, 100.0))
+mdb.models['Model-1'].sketches['__profile__'].FixedConstraint(entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 7.0), point2=(
+    2.0, 7.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(2.0, 7.0), point2=(
+    2.0, 5.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(2.0, 5.0), point2=(
+    12.5, 5.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[4], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(12.5, 5.0), point2=(
+    12.5, -5.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[5], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(12.5, -5.0), point2=
+    (0.0, -5.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7])
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='push', type=
+    DISCRETE_RIGID_SURFACE)
+mdb.models['Model-1'].parts['push'].BaseShellRevolve(angle=360.0, 
+    flipRevolveDirection=OFF, sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['push'].ReferencePoint(point=(0.0, -5.0, 0.0))
+mdb.models['Model-1'].parts['push'].Set(name='Set-pd', referencePoints=(
+    mdb.models['Model-1'].parts['push'].referencePoints[2], ))
+mdb.models['Model-1'].parts['push'].Surface(name='Surf-pd', side1Faces=
+    mdb.models['Model-1'].parts['push'].faces.getSequenceFromMask(('[#10 ]', ), 
+    ))
+mdb.models['Model-1'].Material(name='SI_mm113111_6061-T6(GB)')
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].SpecificHeat(
+    dependencies=0, law=CONSTANTVOLUME, table=((895999989.0, ), ), 
+    temperatureDependency=OFF)
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].setValues(
+    materialIdentifier='')
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].setValues(
+    description=
+    '\xb2\xc4\xc1\xcf\xbf\xe2\xc0\xb4\xd4\xb4: https://xcbjx.taobao.com/\n\xbb\xb6\xd3\xad\xbc\xd3\xc8\xebqq\xc8\xba : Abaqus \xbb\xb6\xc0\xd6\xb9\xb2\xbd\xf8\xc6\xbd\xcc\xa8 431603427\n6061-T6 (GB)[N_mm_T]\n\xb2\xe2\xca\xd4\xc0\xe0\xd0\xcd\xa3\xba\n\xcb\xb5\xc3\xf7\xa3\xba\n\xd0\xc5\xcf\xa2\xa3\xba\n\xce\xaa\xc2\xfa\xd7\xe3\xc6\xf3\xd2\xb5\xbb\xf2\xb8\xf6\xc8\xcb\xb6\xa8\xd6\xc6\xbb\xaf\xd0\xe8\xc7\xf3\xa3\xac\xce\xd2\xc3\xc7\xcc\xe1\xb9\xa9\xb2\xc4\xc1\xcf\xbf\xe2\xb6\xa8\xd6\xc6\xb7\xfe\xce\xf1\xa3\xac\xd2\xb2\xbd\xab\xcd\xc6\xb3\xf6\xb8\xfc\xb6\xe0\xc0\xa9\xb3\xe4\xa1\xa2\xd7\xa8\xd2\xb5\xb5\xc4\xb2\xc4\xc1\xcf\xbf\xe2\xa3\xac\xce\xaaABAQUS\xb7\xc2\xd5\xe6\xd0\xa7\xc2\xca\xcc\xe1\xb8\xdf\xb6\xf8\xc5\xac\xc1\xa6\xa1\xa3')
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].Elastic(
+    dependencies=0, moduli=LONG_TERM, noCompression=OFF, noTension=OFF, table=(
+    (69000.0006661372, 0.33), ), temperatureDependency=OFF, type=ISOTROPIC)
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].Density(
+    dependencies=0, table=((2.7e-09, ), ), temperatureDependency=OFF)
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].Plastic(dataType=
+    HALF_CYCLE, dependencies=0, hardening=ISOTROPIC, numBackstresses=1, rate=
+    OFF, strainRangeDependency=OFF, table=((275.0, 0.0), (275.0, 0.004), (
+    275.79029, 0.01), (277.16924, 0.015), (282.68505, 0.02), (296.47456, 0.03), 
+    (310.26408, 0.04), (324.05359, 0.06), (344.73786, 0.08), (355.76948, 0.09))
+    , temperatureDependency=OFF)
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].Conductivity(
+    dependencies=0, table=((166.9, ), ), temperatureDependency=OFF, type=
+    ISOTROPIC)
+mdb.models['Model-1'].materials['SI_mm113111_6061-T6(GB)'].Expansion(
+    dependencies=0, table=((2.4e-05, ), ), temperatureDependency=OFF, type=
+    ISOTROPIC, userSubroutine=OFF, zero=0.0)
+mdb.models['Model-1'].HomogeneousSolidSection(material=
+    'SI_mm113111_6061-T6(GB)', name='Section-tube', thickness=None)
+mdb.models['Model-1'].parts['tube'].Set(cells=
+    mdb.models['Model-1'].parts['tube'].cells.getSequenceFromMask(('[#1 ]', ), 
+    ), name='Set-section-tube')
+mdb.models['Model-1'].parts['tube'].SectionAssignment(offset=0.0, offsetField=
+    '', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['tube'].sets['Set-section-tube'], sectionName=
+    'Section-tube', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].parts['bend'].engineeringFeatures.PointMassInertia(alpha=
+    0.0, composite=0.0, i11=1.0, i22=1.0, i33=1.0, mass=1.0, name='Inertia-bd', 
+    region=mdb.models['Model-1'].parts['bend'].sets['Set-bd'])
+mdb.models['Model-1'].ExplicitDynamicsStep(massScaling=((SEMI_AUTOMATIC, MODEL, 
+    AT_BEGINNING, 10000.0, 0.0, None, 0, 0, 0.0, 0.0, 0, None), ), name=
+    'Step-1', previous='Initial')
+mdb.models['Model-1'].ExplicitDynamicsStep(massScaling=((SEMI_AUTOMATIC, MODEL, 
+    AT_BEGINNING, 10000.0, 0.0, None, 0, 0, 0.0, 0.0, 0, None), ), name=
+    'Step-2', previous='Step-1', timePeriod=2.0698209897192741)
+mdb.models['Model-1'].ExplicitDynamicsStep(massScaling=((SEMI_AUTOMATIC, MODEL, 
+    AT_BEGINNING, 10000.0, 0.0, None, 0, 0, 0.0, 0.0, 0, None), ), name=
+    'Step-3', previous='Step-2', timePeriod=2.0698209897192741)
+mdb.models['Model-1'].ExplicitDynamicsStep(massScaling=((SEMI_AUTOMATIC, MODEL, 
+    AT_BEGINNING, 10000.0, 0.0, None, 0, 0, 0.0, 0.0, 0, None), ), name=
+    'Step-4', previous='Step-3', timePeriod=2.0698209897192741)
+mdb.models['Model-1'].ExplicitDynamicsStep(massScaling=((SEMI_AUTOMATIC, MODEL, 
+    AT_BEGINNING, 10000.0, 0.0, None, 0, 0, 0.0, 0.0, 0, None), ), name=
+    'Step-5', previous='Step-4', timePeriod=2.0698209897192741)
+mdb.models['Model-1'].ExplicitDynamicsStep(massScaling=((SEMI_AUTOMATIC, MODEL, 
+    AT_BEGINNING, 10000.0, 0.0, None, 0, 0, 0.0, 0.0, 0, None), ), name=
+    'Step-6', previous='Step-5', timePeriod=2.0698209897192741)
+mdb.models['Model-1'].ExplicitDynamicsStep(massScaling=((SEMI_AUTOMATIC, MODEL, 
+    AT_BEGINNING, 10000.0, 0.0, None, 0, 0, 0.0, 0.0, 0, None), ), name=
+    'Step-7', previous='Step-6', timePeriod=2.0698209897192741)
+mdb.models['Model-1'].fieldOutputRequests['F-Output-1'].setValues(variables=(
+    'S', 'SVAVG', 'PE', 'PEVAVG', 'PEEQ', 'PEEQVAVG', 'LE', 'U', 'V', 'A', 
+    'RF', 'CSTRESS', 'EVF', 'COORD'))
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='tube-1', part=
+    mdb.models['Model-1'].parts['tube'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='bend-1', part=
+    mdb.models['Model-1'].parts['bend'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='push-1', part=
+    mdb.models['Model-1'].parts['push'])
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='guide-1', part=
+    mdb.models['Model-1'].parts['guide'])
+mdb.models['Model-1'].rootAssembly.rotate(angle=90.0, axisDirection=(1.0, 0.0, 
+    0.0), axisPoint=(0.0, 0.0, 0.0), instanceList=('bend-1', ))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('tube-1', ), vector=
+    (0.0, 0.0, -81.9779720748124))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('bend-1', ), vector=
+    (0.0, 0.0, -61.9779720748124))
+mdb.models['Model-1'].rootAssembly.rotate(angle=90.0, axisDirection=(1.0, 0.0, 
+    0.0), axisPoint=(0.0, 0.0, 0.0), instanceList=('push-1', ))
+mdb.models['Model-1'].rootAssembly.translate(instanceList=('push-1', ), vector=
+    (0.0, 0.0, 565.87609202601288))
+mdb.models['Model-1'].ContactProperty('IntProp-frictionless')
+mdb.models['Model-1'].interactionProperties['IntProp-frictionless'].TangentialBehavior(
+    formulation=FRICTIONLESS)
+mdb.models['Model-1'].ContactProperty('IntProp-rough')
+mdb.models['Model-1'].interactionProperties['IntProp-rough'].TangentialBehavior(
+    formulation=ROUGH)
+mdb.models['Model-1'].ContactProperty('IntProp-penalty')
+mdb.models['Model-1'].interactionProperties['IntProp-penalty'].TangentialBehavior(
+    dependencies=0, directionality=ISOTROPIC, elasticSlipStiffness=None, 
+    formulation=PENALTY, fraction=0.005, maximumElasticSlip=FRACTION, 
+    pressureDependency=OFF, shearStressLimit=None, slipRateDependency=OFF, 
+    table=((0.0341354766492895, ), ), temperatureDependency=OFF)
+mdb.models['Model-1'].interactionProperties['IntProp-penalty'].NormalBehavior(
+    allowSeparation=ON, constraintEnforcementMethod=DEFAULT, 
+    pressureOverclosure=HARD)
+mdb.models['Model-1'].SurfaceToSurfaceContactExp(clearanceRegion=None, 
+    createStepName='Step-1', datumAxis=None, initialClearance=OMIT, 
+    interactionProperty='IntProp-penalty', master=
+    mdb.models['Model-1'].rootAssembly.instances['bend-1'].surfaces['Surf-bd'], 
+    mechanicalConstraint=PENALTY, name='Int-bd-tube', slave=
+    mdb.models['Model-1'].rootAssembly.instances['tube-1'].surfaces['Surf-tube']
+    , sliding=FINITE)
+mdb.models['Model-1'].SurfaceToSurfaceContactExp(clearanceRegion=None, 
+    createStepName='Step-1', datumAxis=None, initialClearance=OMIT, 
+    interactionProperty='IntProp-frictionless', master=
+    mdb.models['Model-1'].rootAssembly.instances['guide-1'].surfaces['Surf-gd']
+    , mechanicalConstraint=PENALTY, name='Int-gd-tube', slave=
+    mdb.models['Model-1'].rootAssembly.instances['tube-1'].surfaces['Surf-tube']
+    , sliding=FINITE)
+mdb.models['Model-1'].SurfaceToSurfaceContactExp(clearanceRegion=None, 
+    createStepName='Step-1', datumAxis=None, initialClearance=OMIT, 
+    interactionProperty='IntProp-rough', master=
+    mdb.models['Model-1'].rootAssembly.instances['push-1'].surfaces['Surf-pd'], 
+    mechanicalConstraint=PENALTY, name='Int-pb-tube', slave=
+    mdb.models['Model-1'].rootAssembly.instances['tube-1'].surfaces['Surf-tube-section']
+    , sliding=FINITE)
+mdb.models['Model-1'].TabularAmplitude(data=((0.0, 0.0), (1.0, 1.0)), name=
+    'Amp-bd', smooth=SOLVER_DEFAULT, timeSpan=STEP)
+mdb.models['Model-1'].TabularAmplitude(data=((0.0, 0.0), (2.0698209897192741, 
+    1.0)), name='Amp-rotation', smooth=SOLVER_DEFAULT, timeSpan=STEP)
+mdb.models['Model-1'].DisplacementBC(amplitude='Amp-bd', createStepName=
+    'Step-1', distributionType=UNIFORM, fieldName='', fixed=OFF, localCsys=None
+    , name='BC-bd', region=
+    mdb.models['Model-1'].rootAssembly.instances['bend-1'].sets['Set-bd'], u1=
+    18.10439129753237, u2=0.0, u3=0.0, ur1=0.0, ur2=-0.47089770912599566, ur3=
+    0.0)
+mdb.models['Model-1'].boundaryConditions['BC-bd'].setValuesInStep(amplitude=
+    'Amp-rotation', stepName='Step-2', u1=-0.038619626691687094, u2=
+    1.1818960153990132, ur2=0, ur3=0.065328742964929631)
+mdb.models['Model-1'].boundaryConditions['BC-bd'].setValuesInStep(amplitude=
+    'Amp-rotation', stepName='Step-3', u1=-0.11569411611903702, u2=
+    1.1768536605191424, ur3=0.065328742964929631)
+mdb.models['Model-1'].boundaryConditions['BC-bd'].setValuesInStep(amplitude=
+    'Amp-rotation', stepName='Step-4', u1=-0.19227501661522464, u2=
+    1.1667904630941601, ur3=0.065328742964929631)
+mdb.models['Model-1'].boundaryConditions['BC-bd'].setValuesInStep(amplitude=
+    'Amp-rotation', stepName='Step-5', u1=-0.26803560901689888, u2=
+    1.1517493560149319, ur3=0.065328742964929631)
+mdb.models['Model-1'].boundaryConditions['BC-bd'].setValuesInStep(amplitude=
+    'Amp-rotation', stepName='Step-6', u1=-0.34265267386327125, u2=
+    1.1317945095626767, ur3=0.065328742964929631)
+mdb.models['Model-1'].boundaryConditions['BC-bd'].setValuesInStep(amplitude=
+    'Amp-rotation', stepName='Step-7', u1=-0.41580787035604894, u2=
+    1.107011057637564, ur3=0.065328742964929631)
+mdb.models['Model-1'].VelocityBC(amplitude=UNSET, createStepName='Step-1', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='BC-pd', 
+    region=
+    mdb.models['Model-1'].rootAssembly.instances['push-1'].sets['Set-pd'], v1=
+    0.0, v2=0.0, v3=-39.9343505202531, vr1=0.0, vr2=0.0, vr3=0.0)
+mdb.models['Model-1'].EncastreBC(createStepName='Step-1', localCsys=None, name=
+    'BC-gd', region=
+    mdb.models['Model-1'].rootAssembly.instances['guide-1'].sets['Set-gd'])
+mdb.models['Model-1'].parts['tube'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['tube'].edges.getSequenceFromMask(('[#1 ]', ), 
+    ), number=24)
+mdb.models['Model-1'].parts['tube'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['tube'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ), number=24)
+mdb.models['Model-1'].parts['tube'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=3.27249234748937)
+mdb.models['Model-1'].parts['tube'].setMeshControls(algorithm=MEDIAL_AXIS, 
+    regions=mdb.models['Model-1'].parts['tube'].cells.getSequenceFromMask((
+    '[#1 ]', ), ))
+mdb.models['Model-1'].parts['tube'].generateMesh()
+mdb.models['Model-1'].parts['tube'].Set(name='Set-tube-node', nodes=
+    mdb.models['Model-1'].parts['tube'].nodes)
+mdb.models['Model-1'].parts['guide'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['guide'].edges.getSequenceFromMask(('[#1 ]', ), 
+    ), number=36)
+mdb.models['Model-1'].parts['guide'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=3.27249234748937)
+mdb.models['Model-1'].parts['guide'].generateMesh()
+mdb.models['Model-1'].parts['push'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['push'].edges.getSequenceFromMask(('[#80 ]', ), 
+    ), number=36)
+mdb.models['Model-1'].parts['push'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=3.27249234748937)
+mdb.models['Model-1'].parts['push'].generateMesh()
+mdb.models['Model-1'].parts['bend'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['bend'].edges.getSequenceFromMask(('[#2 ]', ), 
+    ), number=48)
+mdb.models['Model-1'].parts['bend'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['bend'].edges.getSequenceFromMask(('[#4 ]', ), 
+    ), number=48)
+mdb.models['Model-1'].parts['bend'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=3.05432619099008)
+mdb.models['Model-1'].parts['bend'].generateMesh()
+mdb.models.changeKey(fromName='Model-1', toName='Model-1-0')
+mdb.Model(modelType=STANDARD_EXPLICIT, name='Model-1')
+mdb.Job(activateLoadBalancing=False, atTime=None, contactPrint=OFF, 
+    description='', echoPrint=OFF, explicitPrecision=DOUBLE, historyPrint=OFF, 
+    memory=90, memoryUnits=PERCENTAGE, model='Model-1-0', modelPrint=OFF, 
+    multiprocessingMode=DEFAULT, name='Job-6FB-3D-0', nodalOutputPrecision=
+    SINGLE, numCpus=1, numDomains=1, parallelizationMethodExplicit=DOMAIN, 
+    queue=None, resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine=''
+    , waitHours=0, waitMinutes=0)
+del mdb.models['Model-1']
+mdb.models['Model-1-0'].rootAssembly.regenerate()
+mdb.jobs.changeKey(fromName='Job-6FB-3D-0', toName='Job-6FB-3D-test')
+mdb.jobs['Job-6FB-3D-test'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-6FB-3D-test']._Message(ERROR, {
+    'message': 'Detected lock file Job-6FB-3D-test.lck. Please confirm that no other applications are attempting to write to the output database associated with this job before removing the lock file and resubmitting.', 
+    'jobName': 'Job-6FB-3D-test'})
+mdb.jobs['Job-6FB-3D-test']._Message(JOB_ABORTED, {
+    'message': 'Detected lock file Job-6FB-3D-test.lck. Please confirm that no other applications are attempting to write to the output database associated with this job before removing the lock file and resubmitting.', 
+    'jobName': 'Job-6FB-3D-test'})
+mdb.jobs.changeKey(fromName='Job-6FB-3D-test', toName='Job-6FB-3D-test1')
+mdb.jobs['Job-6FB-3D-test1'].submit(consistencyChecking=OFF)
+mdb.jobs['Job-6FB-3D-test1']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'DESKTOP-EPA9N7F', 'handle': 0, 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_TUBE-1_SET-TUBE HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'NODE SET ASSEMBLY_TUBE-1_TUBE-REFPT_ HAS NO MEMBERS AND WILL BE IGNORED.  NODES DEFINED IN THIS SET MAY HAVE BEEN DELETED BECAUSE THEY WERE NOT CONNECTED TO ANY ELEMENTS.', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE MASS', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE ROTARYI', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D4', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST LE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PE IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQ IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST S IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST SVAVG IS NOT AVAILABLE FOR ELEMENT TYPE R3D3', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST EVF IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'OUTPUT REQUEST PEEQVAVG IS NOT AVAILABLE FOR ELEMENT TYPE C3D8R', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'Warning message limit reached. No further warning messages will be reported.\nPlease see the dat file for more warnings.', 
+    'jobName': 'Job-6FB-3D-test1'})
+mdb.jobs['Job-6FB-3D-test1']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'Job-6FB-3D-test1'})
+# Save by Wangle on 2024_08_02-21.05.22; build 2016 2015_09_25-04.31.09 126547
