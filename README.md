@@ -1,6 +1,6 @@
 FP-3D: A physical-modulated framework for process optimization and shape inference of industrial metal tube
 
-### Requirements (Ubuntu 22.04):\
+### Requirements (Ubuntu 22.04):
 --PyTorch >= 2.2.0\
 --python = 3.9\
 --CUDA >= 12.0\
@@ -10,10 +10,10 @@ FP-3D: A physical-modulated framework for process optimization and shape inferen
 --timm\
 --torchvision\
 
-### Pytorch Extensions:\
+### Pytorch Extensions:
 --PointNet++\
 --KNN_CUDA\
 --Chamfer Distance\
 
-### Dataset:\
+### Dataset:
 https://drive.google.com/drive/folders/1BGH2WJ1cAGRth8AbVFuwGTCKUDWUKht7
