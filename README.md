@@ -15,5 +15,5 @@ FP-3D: A physical-modulated framework for process optimization and shape inferen
 --KNN_CUDA\
 --Chamfer Distance\
 
-### Dataset(Patical):\
+### Dataset:\
 https://drive.google.com/drive/folders/1BGH2WJ1cAGRth8AbVFuwGTCKUDWUKht7
