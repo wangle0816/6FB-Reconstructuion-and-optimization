@@ -1,0 +1,83 @@
+import numpy as np
+from scipy.spatial.transform import Rotation as R
+
+def calculate_tangent_vector(points):
+    A = np.array(points[0])
+    B = np.array(points[1])
+    tangent_vector = B - A
+    return tangent_vector
+
+def translate_to_origin_matrix(A):
+    T = np.eye(4)
+    T[:3, 3] = -A
+    return T
+
+def rotate_to_align_with_negative_z_matrix(tangent_vector):
+    tangent_unit_vector = tangent_vector / np.linalg.norm(tangent_vector)
+    z_negative = np.array([0, 0, -1])
+    cross_product = np.cross(tangent_unit_vector, z_negative)
+    dot_product = np.dot(tangent_unit_vector, z_negative)
+    
+    k = cross_product
+    sin_theta = np.linalg.norm(k)
+    cos_theta = dot_product
+    
+    if sin_theta == 0:
+        return np.eye(4)
+    
+    kx, ky, kz = k / sin_theta
+    K = np.array([[0, -kz, ky], [kz, 0, -kx], [-ky, kx, 0]])
+    
+    R_3x3 = np.eye(3) + sin_theta * K + (1 - cos_theta) * np.dot(K, K)
+    R_4x4 = np.eye(4)
+    R_4x4[:3, :3] = R_3x3
+    return R_4x4
+
+def optimize_rotation_angle(points):
+    min_y = float('inf')
+    best_angle = 0
+    best_points = None
+    
+    for angle in np.linspace(0, 2 * np.pi, 360):
+        rotation_matrix = R.from_euler('z', angle).as_matrix()
+        rotated_points = np.dot(points, rotation_matrix.T)
+        
+        if np.all(rotated_points[:, 0] > 0) and np.all(rotated_points[:, 1] > 0):
+            max_y = np.max(rotated_points[:, 1])
+            if max_y < min_y:
+                min_y = max_y
+                best_angle = angle
+                best_points = rotated_points
+    
+    best_rotation_matrix = R.from_euler('z', best_angle).as_matrix()
+    R2 = np.eye(4)
+    R2[:3, :3] = best_rotation_matrix
+    return R2
+
+def transform_curve_and_get_matrix(points):
+    A = np.array(points[0])
+    tangent_vector = calculate_tangent_vector(points)
+    
+    T = translate_to_origin_matrix(A)
+    R1 = rotate_to_align_with_negative_z_matrix(tangent_vector)
+    
+    translated_points = np.dot(T, np.hstack((points, np.ones((len(points), 1)))).T).T[:, :3]
+    rotated_points = np.dot(R1, np.hstack((translated_points, np.ones((len(translated_points), 1)))).T).T[:, :3]
+    
+    R2 = optimize_rotation_angle(rotated_points)
+    
+    M = R2 @ R1 @ T
+    return M
+
+# 示例散点
+points = np.array([
+    [1, 2, 3],
+    [2, 3, 4],
+    [3, 4, 5],
+    # 其他点
+])
+
+# 计算总的空间变换矩阵
+M = transform_curve_and_get_matrix(points)
+print("Total transformation matrix:")
+print(M)
