@@ -17,3 +17,6 @@ FP-3D: A physical-modulated framework for process optimization and shape inferen
 
 ### Dataset:
 https://drive.google.com/drive/folders/1BGH2WJ1cAGRth8AbVFuwGTCKUDWUKht7
+
+### Acknowledgement
+We thanks the [SLIDE](https://github.com/SLIDE-3D/SLIDE) for sharing their code.
